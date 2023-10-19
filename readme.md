@@ -20,8 +20,9 @@ FORMAT: Cell Number | Time Point | X | Y (Exactly same information as variables 
 
 The specific datasets needed to run the specific codes are detailed in the Code explanations below:
 
-# 1a) FOLDER = 'Codes_for_interpolation_and_pMC_6_18_2022'. It is important to load all the functions and variables provided in this folder.
-get_nonMultiples.m (associated functions = get_asymmetric_xMC.m, get_asymmetric_yMC.m) | MC_Factor = Very high --> Simple Interpolation
+# 1a) Trajectory interpolation. 
+FOLDER = 'Codes_for_interpolation_and_pMC_6_18_2022'.
+Run get_nonMultiples.m (associated functions = get_asymmetric_xMC.m, get_asymmetric_yMC.m) | MC_Factor = Very high --> Simple Interpolation
 
 >> [xy_t_hr_MC]=get_nonMultiples(d,dt_actual,N,dt_needed): 
 	- Function that takes in inputs and outputs [xy_t_hr_MC] which is the trajectories adjusted for 'dt_needed' using either Pseudo Monte Carlo technique or Simple interpolation.
@@ -70,19 +71,22 @@ get_nonMultiples.m (associated functions = get_asymmetric_xMC.m, get_asymmetric_
 	- Function that takes in inputs and outputs [xy_t_hr_reshape] which is the trajectories/ time points adjusted for 'dt_needed' using Simple interpolation.
 
 
->> Sample Trajectory to analyze the code for the Reviewer: 
+>> Sample Trajectory to analyze the code: 
 
 	After making sure the functions have been added to the MATLAB path, and loading the variable 'HT1080_2D_Scr.mat', please run the code: 'Plot_Sample_Trajectory.m'. 
 	- This will plot 3 trajectories at 2min, 4min and 5min time intervals using pseudo Monte Carlo. The plot is labelled.
 
 
-# 1b) FOLDER = 'Codes_for_Concordance_Analysis_7_10_2022'. It is important to load all the functions and variables provided in this folder and FOLDER = 'Codes_for_interpolation_and_pMC_6_18_2022'.
+# 1b) Concordance analysis.
+FOLDER = 'Codes_for_Concordance_Analysis_7_10_2022'. It is important to load all the functions and variables provided in this folder and FOLDER = 'Codes_for_interpolation_and_pMC_6_18_2022'.
 >> This code calculates and plots the Concordance between same trajectory but at different time intervals. 'get_area_combined_2.m' is the function used to calculate the area. 
 >> The methodology is explained in the Materials and Methods section of the paper
 >> Sample data = 'HT1080_2D_Scr.mat'. HT1080 cells moving on 2d glass substrates.
 
-# 2) FOLDER = "Codes_for_calculating_HO_parameters_6_18_2022"
-get_HO.m (associated functions = get_MSD.m, get_ACF.m, get_dR_PDF.m, get_dR_polarity, get_dtheta_PDF.m, fit_APRW.m)
+# 2) Compute higher order parameters for each trajecotry.
+FOLDER = "Codes_for_calculating_HO_parameters_6_18_2022"
+
+Run get_HO.m (associated functions = get_MSD.m, get_ACF.m, get_dR_PDF.m, get_dR_polarity, get_dtheta_PDF.m, fit_APRW.m)
 %% All explanations are present in "Statistical analysis of cell migration in 3D using the anisotropic persistent random walk model", P. Wu et.al. (Nature Protocols, 2015) 
 
 >> Run the Main function: [cell_N]=get_HO(xy_N,N)
@@ -103,8 +107,9 @@ get_HO.m (associated functions = get_MSD.m, get_ACF.m, get_dR_PDF.m, get_dR_pola
 
 
 
-# 3) FOLDER= 'Codes_for_kmeans_clustering_Stability_Analysis_6_18_2022'.
-k_means_Clustering.m or, k_means_Clustering_2_5hrs_dataset.m
+# 3) k-means clustering.
+FOLDER = 'Codes_for_kmeans_clustering_Stability_Analysis_6_18_2022'.
+Run k_means_Clustering.m or, k_means_Clustering_2_5hrs_dataset.m
 
 >> Code that takes in zscore and log normalized Higher Order parameters of each cell and output the clusters of the cells.
 
@@ -130,8 +135,9 @@ c) FOLDER= 'Code_to_plot_Heatmap_per_cell_7_10_2022'. It is important to load al
 >> To plot the Heatmaps of Higher Order parameters of each cell, run the MATLAB code: 'Heatmap_2A_3A_plot.m'
 	- This will plot the Higher order parameters of all cells, grouped together for each cell.
 
-# 4) FOLDER = 'Codes_for_SVM_Prediction_6_28_2022'. It is important to load all functions in a MATLAB window
-SVM_Clustering_Prediction.m (associated functions = trainedModel.predictFcn --> standard MATLAB training system)
+# 4) SVM prediction.
+FOLDER = 'Codes_for_SVM_Prediction_6_28_2022'. It is important to load all functions in a MATLAB window
+Run SVM_Clustering_Prediction.m (associated functions = trainedModel.predictFcn --> standard MATLAB training system)
 
 >> 'trainedModel.predictFcn.mat'/ 'trainedModel_2_5hrs.mat'; = Linear SVM trained model used to do classification for 8hrs and 2.5hrs
 >>  Load the MATLAB data file shared 'SVM_Prediction_variables'
@@ -166,8 +172,9 @@ It is important for the cells we want to predict the cluster of to have the same
 	5. Finally a bar plot will be generating showing the fraction of cells in each of the 17 clusters (since the sample datasets are of 2.5hrs time periods)
 
 
-# 5) FOLDER = 'Codes_for_Simulating_Trajectories_6_18_2022'. 
-Simulate_APRW_v1_2_5hrs.m / Simulate_APRW_v1_8hrs.m (associated functions = fit_APRW.m, sim_APRW.m, get_MSD.m, get_ACF.m, get_dR_PDF.m, get_dR_polarity, get_dtheta_PDF.m)
+# 5) Simulate trajectories baed on APRW model.
+FOLDER = 'Codes_for_Simulating_Trajectories_6_18_2022'. 
+Run Simulate_APRW_v1_2_5hrs.m / Simulate_APRW_v1_8hrs.m (associated functions = fit_APRW.m, sim_APRW.m, get_MSD.m, get_ACF.m, get_dR_PDF.m, get_dR_polarity, get_dtheta_PDF.m)
 
 %% All explanations are present in "Statistical analysis of cell migration in 3D using the anisotropic persistent random walk model", P. Wu et.al. (Nature Protocols, 2015) 
 
@@ -178,8 +185,9 @@ Simulate_APRW_v1_2_5hrs.m / Simulate_APRW_v1_8hrs.m (associated functions = fit_
 >> Run the code 'Simulate_APRW_v1_2_5hrs.m' / 'Simulate_APRW_v1_8hrs.m'
 
 
-# 6) FOLDER = 'Codes_for_Entropy_Calculations_6_28_2022'. It is important to load all functions in a MATLAB window 
-'Entropy_Calculations.m' Code for Entropy calculations
+# 6) Compute entropy for each trajectory. 
+FOLDER = 'Codes_for_Entropy_Calculations_6_28_2022'. It is important to load all functions in a MATLAB window 
+Run 'Entropy_Calculations.m' Code for Entropy calculations
 
 >> INPUTS: 
 	1) 'R_comb_group.mat' --> Contains the information of transition from states at time period T1:SGx to T2:SGy to T3:SGz to T:CGw (Provided with the code writeup)
