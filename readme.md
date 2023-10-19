@@ -1,5 +1,5 @@
+In general, the relevant datatsets to run HaLo are shared in the MATLAB data file 'General_Datasets_needed_to_run_HaLo.mat'. All of the code to harmonize trajectories, compute higher order parameters, run k-means clsutering, and predict motility pattern using a SVM classifier was developed in Matlab. The data required for these codes are in "General_Datasets_needed_to_run_HaLO.mat.zip". The interpoalted trajectories, higher order parameters, and derived motility parameters are included in the folder "CaMI_Curated_Data".
 
-In general, the relevant datatsets to run HaLo are shared in the MATLAB data file 'General_Datasets_needed_to_run_HaLo.mat'. 
 Some general variables are explained as follows:
 1) 'cell' or 'cell_2_5hrs': raw Higher order parameters calculated for N=24753 and N=74253 cells for 8hrs datasets and 2.5hrs datasets respectively.
 The order of the Higher Order parameters = [MSD10, MSD100, Pp, Pnp, Dp, Dnp, Dtot, phi].
