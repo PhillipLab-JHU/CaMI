@@ -1,7 +1,0 @@
-1. short_trajectory_features.csv -- contains higher order features, cluster #, sg class, tSNE coordinate, and condition data for each 2.5 hour trajectory.
-Columns are organized as follows:
-['MSD10', 'MSD100', 'Pp', 'Pnp', 'Dp', 'Dnp', 'Dtot', 'phi', 'cluster', 'tSNE_x', 'tSNE_y', 'sg', 'condition', 'condition_name', 'cell_type']
-
-2. long_trajectory_features.csv -- contains higher order features, cluster #, cg class, tSNE coordinate, and condition data for each 8 hour trajectory.
-Columns are organized as follows:
-

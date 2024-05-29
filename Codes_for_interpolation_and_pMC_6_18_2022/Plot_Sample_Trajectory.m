@@ -2,10 +2,13 @@
 % 2. Once the above variable is loaded, please Copy+Paste the code provided below.
 
 %% Plot Original trajectory %%
-data=[]; data=HT1080_2D_Scr; % HT1080_2D_Scr sample data is provided with the codes. The Reviewer just needs to load this MATLAB datafile. Time interval = 2min
+data=[]; 
+data=HT1080_2D_Scr; % HT1080_2D_Scr sample data is provided with the codes. The Reviewer just needs to load this MATLAB datafile. Time interval = 2min
+
 clear i; i=1; tnumb=3; cidk=hsv(tnumb); % Change 'tnumb' to get a different color
 m_cell=[55]; % Which cell to plot. Here, 55th cell was chosen. An array is used in case we want to plot multiple cells
 i_cell=m_cell(1,i);
+
 figure(1)
 HT1080_2D_2min = [];
 [HT1080_2D_2min]=get_nonMultiples(data,2,239,2); %data points every 2 min = Original Trajectory which has N=239 timepoints | dt_needed=dt_actual=2min

@@ -1,0 +1,73 @@
+clear all; close all; clc;
+%% Code to recapitulate Figure 1B-C
+load HT1080_2D_Scr.mat;
+% isolate first trajectory in dataset:
+traj = HT1080_2D_Scr(HT1080_2D_Scr(:,1) == 55,:);
+
+% generate 8m-, 6m-, 4m- trajectories
+traj_8m = traj(1:4:end,:);
+traj_8m(:,2) = [0:1:length(traj_8m)-1];
+
+traj_6m = traj(1:3:end,:);
+traj_6m(:,2) = [0:1:length(traj_6m)-1];
+
+traj_4m = traj(1:2:end,:);
+traj_4m(:,2) = [0:1:length(traj_4m)-1];
+
+figure;
+plot(traj(:,3), traj(:,4), 'k.-');
+%% try symmetric interpolations
+traj_interp = get_nonMultiples(traj_8m,8,60, 4, 0);
+traj_MC = get_nonMultiples(traj_8m,8, 60, 4, 1);
+
+figure;
+plot(traj_4m(:,3), traj_4m(:,4), 'b.-');
+hold on;
+plot(traj_interp(:,3), traj_interp(:,4), 'r.-');
+hold on;
+plot(traj_MC(:,3), traj_MC(:,4), 'g.-');
+hold on;
+legend(["original","interpolation","pmc"]);
+%% try asymmetric interpolations
+traj_interp = get_nonMultiples(traj_8m,8,60, 6, 0);
+traj_MC = get_nonMultiples(traj_8m,8, 60, 6, 1);
+
+figure;
+plot(traj_6m(:,3), traj_6m(:,4), 'b.-');
+hold on;
+plot(traj_interp(:,3), traj_interp(:,4), 'r.-');
+hold on;
+plot(traj_MC(:,3), traj_MC(:,4), 'g.-');
+hold on;
+legend(["original","interpolation","pmc"]);
+
+%% Perform for all trajectories:
+data=HT1080_2D_Scr;
+[HT1080_2D_2min]=get_nonMultiples(data,2,239,2,0); %data points every 2 min
+[HT1080_2D_8min]=get_nonMultiples(HT1080_2D_2min,2,239,8,0);
+
+[HT1080_2D_4min]=get_nonMultiples(HT1080_2D_2min,2,239,4,0);
+[HT1080_2D_6min]=get_nonMultiples(HT1080_2D_2min,2,239,6,0);
+
+n_tot=75;
+% Symmetric interpolation:
+traj_interp_symm = get_nonMultiples(HT1080_2D_8min,8,60, 4, 0);
+traj_MC_symm = get_nonMultiples(HT1080_2D_8min,8, 60, 4, 1);
+
+figure;
+[Area_4min_Actual_2]=(get_area_combined_2(HT1080_2D_4min,120,n_tot))';
+[Area_4min_interp_symm]=(get_area_combined_2(traj_interp_symm,119,n_tot))';
+[Area_4min_MC_symm]=(get_area_combined_2(traj_MC_symm,119,n_tot))';
+y_plot=[sum(Area_4min_Actual_2)' sum(Area_4min_interp_symm)' sum(Area_4min_MC_symm)'];
+boxplot(y_plot);
+
+% Asymmetric interpolations
+traj_interp_asymm = get_nonMultiples(HT1080_2D_8min,8,60, 6, 0);
+traj_MC_asymm = get_nonMultiples(HT1080_2D_8min,8, 60, 6, 1);
+
+figure;
+[Area_6min_Actual_2]=(get_area_combined_2(HT1080_2D_6min,80,n_tot))';
+[Area_6min_interp_symm]=(get_area_combined_2(traj_interp_asymm,79,n_tot))';
+[Area_6min_MC_symm]=(get_area_combined_2(traj_MC_asymm,79,n_tot))';
+y_plot=[sum(Area_6min_Actual_2)' sum(Area_6min_interp_symm)' sum(Area_6min_MC_symm)'];
+boxplot(y_plot);
